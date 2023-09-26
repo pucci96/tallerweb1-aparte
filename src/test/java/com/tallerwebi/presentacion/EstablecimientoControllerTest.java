@@ -1,0 +1,51 @@
+package com.tallerwebi.presentacion;
+
+import com.tallerwebi.dominio.Establecimiento;
+import com.tallerwebi.dominio.EstablecimientoService;
+import com.tallerwebi.dominio.excepcion.EstablecimientoExistenteException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.web.servlet.ModelAndView;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
+import static org.mockito.Mockito.*;
+
+public class EstablecimientoControllerTest {
+    
+    private EstablecimientoController establecimientoController;
+    private EstablecimientoService establecimientoServiceMock;
+    private Establecimiento establecimientoMock;
+    
+    @BeforeEach
+    public void setup() {
+        establecimientoMock = mock(Establecimiento.class);
+        when(establecimientoMock.getDireccion()).thenReturn("Calle Falsa 123");
+        establecimientoServiceMock = mock(EstablecimientoService.class);
+        establecimientoController = new EstablecimientoController(establecimientoServiceMock);
+    }
+    
+    @Test
+    public void queSeRegistreUnEstablecimiento() throws EstablecimientoExistenteException {
+        ModelAndView modelAndView = establecimientoController.registrarEstablecimiento(establecimientoMock);
+        
+        verify(establecimientoServiceMock, times(1)).agregarEstablecimiento(establecimientoMock);
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("home"));
+    }
+    
+    @Test
+    public void queNoSeRegistreUnEstablecimientoSiYaExisteUnoEnEsaDireccion() throws EstablecimientoExistenteException {
+        Establecimiento establecimientoRepetidoMock = mock(Establecimiento.class);
+        when(establecimientoRepetidoMock.getDireccion()).thenReturn("Calle Falsa 123");
+        
+        when(establecimientoServiceMock.buscarEstablecimiento("Calle Falsa 123")).thenReturn(establecimientoMock);
+        doThrow(EstablecimientoExistenteException.class).when(establecimientoServiceMock).agregarEstablecimiento(establecimientoRepetidoMock);
+        
+        ModelAndView modelAndView = establecimientoController.registrarEstablecimiento(establecimientoRepetidoMock);
+        
+        verify(establecimientoServiceMock, times(1)).agregarEstablecimiento(establecimientoRepetidoMock);
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("nuevo-establecimiento"));
+        assertThat(modelAndView.getModelMap().get("error").toString(), equalToIgnoringCase("Error: Ya existe un establecimiento en Calle Falsa 123"));
+    }
+    
+}
