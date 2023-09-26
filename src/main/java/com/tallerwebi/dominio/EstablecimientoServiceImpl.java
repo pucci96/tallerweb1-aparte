@@ -1,5 +1,6 @@
 package com.tallerwebi.dominio;
 
+import com.tallerwebi.dominio.excepcion.EstablecimientoExistenteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -15,8 +16,19 @@ public class EstablecimientoServiceImpl implements EstablecimientoService {
         this.establecimientoRepository = establecimientoRepository;
     }
     
-    public void agregarEstablecimiento(Establecimiento establecimiento) {
-        establecimientoRepository.agregarEstablecimiento(establecimiento);
+    @Override
+    public void agregarEstablecimiento(Establecimiento establecimiento) throws EstablecimientoExistenteException {
+        Establecimiento establecimientoExistente = buscarEstablecimiento(establecimiento.getDireccion());
+        
+        if (establecimientoExistente == null) {
+            establecimientoRepository.agregarEstablecimiento(establecimiento);
+        } else {
+            throw new EstablecimientoExistenteException();
+        }
     }
     
+    @Override
+    public Establecimiento buscarEstablecimiento(String direccion) {
+        return establecimientoRepository.buscarEstablecimiento(direccion);
+    }
 }

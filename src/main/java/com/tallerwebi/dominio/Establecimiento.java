@@ -12,8 +12,17 @@ public class Establecimiento {
     private Long id;
     private String direccion;
     private Integer capacidadMaxima;
-    private Short cantLugaresParaDiscapacitados;
+    private Integer cantLugaresParaDiscapacitados;
     
+    public Establecimiento() {
+    }
+    
+    public Establecimiento(Long id, String direccion, Integer capacidadMaxima, Integer cantLugaresParaDiscapacitados) {
+        this.id = id;
+        this.direccion = direccion;
+        this.capacidadMaxima = capacidadMaxima;
+        this.cantLugaresParaDiscapacitados = cantLugaresParaDiscapacitados;
+    }
     
     public Long getId() {
         return id;
@@ -39,11 +48,11 @@ public class Establecimiento {
         this.capacidadMaxima = capacidadMaxima;
     }
     
-    public Short getCantLugaresParaDiscapacitados() {
+    public Integer getCantLugaresParaDiscapacitados() {
         return cantLugaresParaDiscapacitados;
     }
     
-    public void setCantLugaresParaDiscapacitados(Short cantLugaresParaDiscapacitados) {
+    public void setCantLugaresParaDiscapacitados(Integer cantLugaresParaDiscapacitados) {
         this.cantLugaresParaDiscapacitados = cantLugaresParaDiscapacitados;
     }
 }
