@@ -1,7 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.Establecimiento;
-import com.tallerwebi.dominio.EstablecimientoService;
+import com.tallerwebi.dominio.ServicioEstablecimiento;
 import com.tallerwebi.dominio.excepcion.EstablecimientoExistenteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class EstablecimientoController {
     
-    private EstablecimientoService service;
+    private ServicioEstablecimiento servicio;
     
     @Autowired
-    public EstablecimientoController(EstablecimientoService service) {
-        this.service = service;
+    public EstablecimientoController(ServicioEstablecimiento service) {
+        this.servicio = service;
     }
     
     @RequestMapping("/nuevo-establecimiento")
@@ -34,7 +34,7 @@ public class EstablecimientoController {
         ModelMap modelMap = new ModelMap();
         
         try {
-            service.agregarEstablecimiento(establecimiento);
+            servicio.agregarEstablecimiento(establecimiento);
         } catch (EstablecimientoExistenteException e) {
             modelMap.put("error", "Error: Ya existe un establecimiento en " + establecimiento.getDireccion());
             return new ModelAndView("nuevo-establecimiento", modelMap);
