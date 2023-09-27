@@ -2,18 +2,17 @@ package com.tallerwebi.dominio.cliente.repository;
 
 import com.tallerwebi.dominio.cliente.entity.Cliente;
 
-import java.util.Optional;
 
 public interface RepositorioCliente{
 
-    Optional<Cliente> buscarClientePorId(Long id);
+    Cliente buscarClientePorId(Long id);
 
     void guardarCliente(Cliente cliente);
 
-    void modificarCliente(Long id);
+    void modificarCliente(Cliente cliente);
 
-    void eliminarCliente(Long id);
+    void eliminarCliente(Cliente cliente);
 
-    void buscarClientePorVehiculo(String vehiculo);
+    Cliente buscarClientePorVehiculo(String vehiculo);
 
 }
