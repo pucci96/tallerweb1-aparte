@@ -11,9 +11,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 import static org.mockito.Mockito.*;
 
-public class EstablecimientoControllerTest {
+public class ControladorEstablecimientoTest {
     
-    private EstablecimientoController establecimientoController;
+    private ControladorEstablecimiento controladorEstablecimiento;
     private ServicioEstablecimiento servicioEstablecimientoMock;
     private Establecimiento establecimientoMock;
     
@@ -22,12 +22,12 @@ public class EstablecimientoControllerTest {
         establecimientoMock = mock(Establecimiento.class);
         when(establecimientoMock.getDireccion()).thenReturn("Calle Falsa 123");
         servicioEstablecimientoMock = mock(ServicioEstablecimiento.class);
-        establecimientoController = new EstablecimientoController(servicioEstablecimientoMock);
+        controladorEstablecimiento = new ControladorEstablecimiento(servicioEstablecimientoMock);
     }
     
     @Test
     public void queSeRegistreUnEstablecimiento() throws EstablecimientoExistenteException {
-        ModelAndView modelAndView = establecimientoController.registrarEstablecimiento(establecimientoMock);
+        ModelAndView modelAndView = controladorEstablecimiento.registrarEstablecimiento(establecimientoMock);
         
         verify(servicioEstablecimientoMock, times(1)).agregarEstablecimiento(establecimientoMock);
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("home"));
@@ -41,7 +41,7 @@ public class EstablecimientoControllerTest {
         when(servicioEstablecimientoMock.buscarEstablecimiento("Calle Falsa 123")).thenReturn(establecimientoMock);
         doThrow(EstablecimientoExistenteException.class).when(servicioEstablecimientoMock).agregarEstablecimiento(establecimientoRepetidoMock);
         
-        ModelAndView modelAndView = establecimientoController.registrarEstablecimiento(establecimientoRepetidoMock);
+        ModelAndView modelAndView = controladorEstablecimiento.registrarEstablecimiento(establecimientoRepetidoMock);
         
         verify(servicioEstablecimientoMock, times(1)).agregarEstablecimiento(establecimientoRepetidoMock);
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("nuevo-establecimiento"));

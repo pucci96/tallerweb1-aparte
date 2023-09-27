@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class EstablecimientoController {
+public class ControladorEstablecimiento {
     
     private ServicioEstablecimiento servicio;
     
     @Autowired
-    public EstablecimientoController(ServicioEstablecimiento service) {
+    public ControladorEstablecimiento(ServicioEstablecimiento service) {
         this.servicio = service;
     }
     
