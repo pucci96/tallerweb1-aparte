@@ -7,13 +7,13 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public class EstablecimientoServiceImpl implements EstablecimientoService {
+public class ServicioEstablecimientoImpl implements ServicioEstablecimiento {
     
-    private EstablecimientoRepository establecimientoRepository;
+    private RepositorioEstablecimiento repositorioEstablecimiento;
     
     @Autowired
-    public EstablecimientoServiceImpl(EstablecimientoRepository establecimientoRepository) {
-        this.establecimientoRepository = establecimientoRepository;
+    public ServicioEstablecimientoImpl(RepositorioEstablecimiento repositorio) {
+        this.repositorioEstablecimiento = repositorio;
     }
     
     @Override
@@ -21,7 +21,7 @@ public class EstablecimientoServiceImpl implements EstablecimientoService {
         Establecimiento establecimientoExistente = buscarEstablecimiento(establecimiento.getDireccion());
         
         if (establecimientoExistente == null) {
-            establecimientoRepository.agregarEstablecimiento(establecimiento);
+            repositorioEstablecimiento.save(establecimiento);
         } else {
             throw new EstablecimientoExistenteException();
         }
@@ -29,6 +29,7 @@ public class EstablecimientoServiceImpl implements EstablecimientoService {
     
     @Override
     public Establecimiento buscarEstablecimiento(String direccion) {
-        return establecimientoRepository.buscarEstablecimiento(direccion);
+        return repositorioEstablecimiento.findByDireccion(direccion);
     }
+    
 }
