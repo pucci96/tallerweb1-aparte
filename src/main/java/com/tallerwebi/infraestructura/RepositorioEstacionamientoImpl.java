@@ -7,11 +7,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+@Repository("repositorioEstacionamiento")
 public class RepositorioEstacionamientoImpl implements RepositorioEstacionamiento {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public RepositorioEstablecimientoImpl(SessionFactory sessionFactory) {
+    public RepositorioEstacionamientoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
