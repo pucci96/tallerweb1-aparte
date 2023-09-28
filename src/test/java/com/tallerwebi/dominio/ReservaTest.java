@@ -30,4 +30,8 @@ public class ReservaTest {
         int cantidadEsperada = 1;
         assertThat(reservas.size(), is(equalTo(cantidadEsperada)));
     }
+    @Test
+    public void queSeNoPuedaRegistrarUnaReservaVacia(){
+
+    }
 }
