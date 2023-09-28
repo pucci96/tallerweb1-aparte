@@ -1,4 +1,5 @@
 package com.tallerwebi.dominio.reserva;
+import com.tallerwebi.dominio.excepcion.ReservaExistente;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -22,7 +23,8 @@ public class RepositorioReservaimpl implements RepositorioReserva{
         }
 
         @Override
-        public void guardarReserva(Reserva reserva) {
+        public void guardarReserva(Reserva reserva) throws ReservaExistente {
+
             sessionFactory.getCurrentSession().save(reserva);
         }
 
