@@ -1,5 +1,6 @@
 package com.tallerwebi.dominio.reserva;
 
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -13,8 +14,12 @@ public class Reserva {
     private LocalDateTime fechaReserva;
     private String cliente;
     private String vehiculo;
-
-
+    public Reserva(Long idReserva, LocalDateTime fechaReserva, String cliente, String vehiculo){
+        this.idReserva= idReserva;
+        this.fechaReserva = fechaReserva;
+        this.cliente=cliente;
+        this.vehiculo= vehiculo;
+    }
     public LocalDateTime getFechaReserva() {
         return fechaReserva;
     }
