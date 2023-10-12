@@ -20,13 +20,18 @@ public class ReservaTest {
         //<>
         List<Reserva> reservas = new ArrayList<>();
         Long id = 1l;
+        List<Establecimiento> establecimientos = new ArrayList<>();
         LocalDateTime ahora = LocalDateTime.now();
         String cliente = "Pablo Perez";
         String vehiculo = "Fiat uno";
 
-        Reserva nuevaReserva = new Reserva(id, ahora, cliente, vehiculo);
+        Reserva nuevaReserva = new Reserva(id, ahora, cliente, vehiculo, establecimientos);
         reservas.add(nuevaReserva);
         int cantidadEsperada = 1;
         assertThat(reservas.size(), is(equalTo(cantidadEsperada)));
+    }
+    @Test
+    public void queSeNoPuedaRegistrarUnaReservaVacia(){
+
     }
 }
