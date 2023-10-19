@@ -26,10 +26,8 @@ public class ControladorEstacionamiento {
         ModelMap modelMap = new ModelMap();
         Usuario us = new Usuario();
         Estacionamiento est = new Estacionamiento();
-        us.setId(100L);
-        us.setEmail("pruebaPucci@gmail.com");
-        est.setUsuario_id(us);
         modelMap.put("estacionamiento", est );
+        modelMap.put("establecimientos", serEstacionamiento.buscarListaEstablecimientos());
         return new ModelAndView("nuevo-estacionamiento", modelMap);
     }
 
@@ -45,9 +43,11 @@ public class ControladorEstacionamiento {
         return new ModelAndView("home");
     }
 
-    @RequestMapping(value= "listaEstablecimientos")
-    public String listaEstablecimientos(){
-        return "redirect/:listaEstablecimientos";
+    @RequestMapping(value= "listaEstacionamientos", method = RequestMethod.GET)
+    public ModelAndView listaEstacionamientos(){
+        ModelAndView listaEstablecimientos = new ModelAndView("listaEstacionamientos");
+        listaEstablecimientos.addObject("listaEstacionamientos", serEstacionamiento.buscarListaEstacionamientos());
+        return listaEstablecimientos;
     }
 
 }

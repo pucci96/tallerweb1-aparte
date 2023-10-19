@@ -4,7 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
+@Entity
 public class Estacionamiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,12 +12,12 @@ public class Estacionamiento {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    private Usuario usuario_id;
+    @JoinColumn(name = "usuario", referencedColumnName = "id")
+    private Usuario usuario;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "establecimiento_id", referencedColumnName = "id")
-    private Usuario establecimiento_id;
+    @JoinColumn(name = "establecimiento", referencedColumnName = "id")
+    private Establecimiento establecimiento;
 
     @Column(name = "fecha")
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
@@ -26,14 +26,14 @@ public class Estacionamiento {
     public Long getId() {
         return id;
     }
-    public Usuario getUsuario_id() {return usuario_id;}
-    public Usuario getEstablecimiento_id() {return establecimiento_id;}
+    public Usuario getUsuario() {return usuario;}
+    public Establecimiento getEstablecimiento() {return establecimiento;}
     public LocalDate getFecha() {return fecha;}
     public void setId(Long id) {
         this.id = id;
     }
-    public void setUsuario_id(Usuario usuario_id) {this.usuario_id = usuario_id;}
-    public void setEstablecimiento_id(Usuario establecimiento_id) {this.establecimiento_id = establecimiento_id;}
+    public void setUsuario(Usuario usuario_id) {this.usuario = usuario;}
+    public void setEstablecimiento(Establecimiento establecimiento) {this.establecimiento = establecimiento;}
     public void setFecha(LocalDate fecha) {this.fecha = fecha;}
 
 }

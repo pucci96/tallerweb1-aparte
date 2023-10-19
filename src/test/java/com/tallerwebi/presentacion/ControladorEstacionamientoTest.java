@@ -1,5 +1,6 @@
 package com.tallerwebi.presentacion;
 
+import com.tallerwebi.dominio.Establecimiento;
 import com.tallerwebi.dominio.Usuario;
 import com.tallerwebi.dominio.Estacionamiento;
 import com.tallerwebi.dominio.ServicioEstacionamiento;
@@ -23,19 +24,33 @@ public class ControladorEstacionamientoTest {
         est = mock(Estacionamiento.class);
         sEst = mock(ServicioEstacionamiento.class);
         cEst = new ControladorEstacionamiento(sEst);
+
+        Establecimiento establecimiento = mock(Establecimiento.class);
+        Usuario usuario = mock(Usuario.class);
+
+        when(est.getEstablecimiento()).thenReturn(establecimiento);
+        when(est.getUsuario()).thenReturn(usuario);
     }
 
     @Test
-    public void checkRegistroEstacionamiento() throws Exception{
-        Usuario establecimiento = mock(Usuario.class);
-        Usuario usuario = mock(Usuario.class);
-
-        when(est.getEstablecimiento_id()).thenReturn(establecimiento);
-        when(est.getUsuario_id()).thenReturn(usuario);
-
+    public void queCreeRegistroEstacionamiento() throws Exception{
         ModelAndView modelAndView = cEst.registrarEstacionamiento(est);
 
         verify(sEst, times(1)).agregarEstacionamiento(est);
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("home"));
     }
+
+    @Test
+    public void queTireExceptionAlFallar() throws Exception{
+
+
+        doThrow(Exception.class).when(sEst).agregarEstacionamiento(est);
+
+        ModelAndView modelAndView = cEst.registrarEstacionamiento(est);
+
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("nuevo-estacionamiento"));
+        //assertThat(modelAndView.getModel().get("error").toString(), equalToIgnoringCase("Por favor, elegir un establecimiento valido"));
+    }
+
+
 }
