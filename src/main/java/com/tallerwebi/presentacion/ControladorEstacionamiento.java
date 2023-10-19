@@ -37,7 +37,8 @@ public class ControladorEstacionamiento {
         try {
             serEstacionamiento.agregarEstacionamiento(e);
         } catch (Exception exception) {
-            modelMap.put("error", exception.getMessage());
+            //modelMap.put("error", exception.getMessage());
+            modelMap.put("error", "Por favor, elegir un establecimiento valido");
             return new ModelAndView("nuevo-estacionamiento", modelMap);
         }
         return new ModelAndView("home");
@@ -49,5 +50,4 @@ public class ControladorEstacionamiento {
         listaEstablecimientos.addObject("listaEstacionamientos", serEstacionamiento.buscarListaEstacionamientos());
         return listaEstablecimientos;
     }
-
 }

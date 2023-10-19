@@ -56,8 +56,12 @@
                 <
                                 <div class="mb-3">
                                     <label for="usuario_id" class="form-label">Usuario</label>
-                                    <input th:field="*{usuario_id}" id="usuario_id" class="form-control"/>
+                                    <input th:field="*{usuario_id}" id="usuario_id" th:value="${usuario}" class="form-control"/>
                                 </div>-->
+                <div class="mb-3">
+                    <label for="usuario" class="form-label">Usuario</label>
+                    <input th:field="*{usuario}" id="usuario" th:value="${usuario}" class="form-control"/>
+                </div>
                 <div class="mb-3">
                     <label for="fecha" class="form-label">Fecha</label>
                     <input th:field="*{fecha}" type="text" class="form-control" id="fecha" disabled/>

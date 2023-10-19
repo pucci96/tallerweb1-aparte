@@ -25,12 +25,12 @@ public class RepositorioEstacionamientoImpl implements RepositorioEstacionamient
     @Override
     public boolean registrarEstacionamiento(Estacionamiento e){
         final Session session = sessionFactory.getCurrentSession();
-        Usuario dummy = new Usuario();
-        dummy.setId(999L);
-        dummy.setEmail("testPucci@gmail.com");
+        //Usuario dummy = new Usuario();
+        //dummy.setId(999L);
+        //dummy.setEmail("testPucci@gmail.com");
         e.setFecha(LocalDate.now());
-        e.setUsuario(dummy);
-        if(e.getEstablecimiento() != null){
+        //e.setUsuario(dummy);
+        if(e.getEstablecimiento() != null && e.getUsuario() != null){
             sessionFactory.getCurrentSession().save(e);
             return true;
         }
