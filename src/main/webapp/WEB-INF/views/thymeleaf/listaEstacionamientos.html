@@ -47,13 +47,19 @@
         <table>
             <tr>
                 <th>ID</th>
+                <th>Cliente (Entidad)</th>
+                <th>ID de Cliente</th>
                 <th>Email de Cliente</th>
+                <th>ID Establecimiento</th>
                 <th>Direccion Establecimiento</th>
                 <th>Fecha</th>
             </tr>
             <tr th:each="estacionamiento : ${listaEstacionamientos}">
                 <td th:text="${estacionamiento.id}"></td>
+                <td th:text="${estacionamiento.usuario}"></td>
+                <td th:text="${estacionamiento.usuario.id}"></td>
                 <td th:text="${estacionamiento.usuario.email}"></td>
+                <td th:text="${estacionamiento.establecimiento.id}"></td>
                 <td th:text="${estacionamiento.establecimiento.direccion}"></td>
                 <td th:text="${estacionamiento.fecha}"></td>
             </tr>

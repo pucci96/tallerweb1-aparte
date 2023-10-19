@@ -31,6 +31,7 @@ public class RepositorioEstacionamientoImpl implements RepositorioEstacionamient
         e.setFecha(LocalDate.now());
         e.setUsuario(dummy);
         if(e.getEstablecimiento() != null && e.getUsuario() != null){
+            //TO-DO: Que decremente el valor de la capacidad disponible
             sessionFactory.getCurrentSession().save(e);
             return true;
         }

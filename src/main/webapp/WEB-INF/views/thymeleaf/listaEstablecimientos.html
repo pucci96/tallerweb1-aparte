@@ -45,6 +45,14 @@
 
     <div class="container">
         <table>
+            <tr>
+                <th>ID Establecimiento</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Cant. Disponible</th>
+                <th>Cant. Maxima</th>
+                <th>Cant. Espacios de Discapacitados</th>
+            </tr>
             <tr th:each="establecimiento : ${listaEstablecimientos}">
                 <td th:text="${establecimiento.id}">1</td>
                 <td th:text="${establecimiento.nombre}">2</td>
