@@ -116,7 +116,7 @@ public class ControladorEstacionamientoTest {
         assert modelAndView != null;
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("nuevo-usuario"));
     }
-
+    @Test
     public void queVayaACreacionDeEstablecimientos() throws Exception{
         MvcResult result = this.mockMvc.perform(get("/nuevo-establecimiento.html"))
                 .andExpect(status().isOk())

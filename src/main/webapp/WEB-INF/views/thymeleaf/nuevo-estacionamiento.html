@@ -72,7 +72,7 @@
                         <option th:value="0" th:text="Seleccionar..." selected disabled></option>
                         <option th:each="establecimiento : ${establecimientos}"
                                 th:text="${establecimiento.direccion}"
-                                th:value="${establecimiento.id}">
+                                th:value="${establecimiento}">
                     </select>
                 </div>
 
