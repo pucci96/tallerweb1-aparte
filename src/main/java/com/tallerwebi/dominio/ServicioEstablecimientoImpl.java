@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.excepcion.EstablecimientoExistenteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -30,6 +31,11 @@ public class ServicioEstablecimientoImpl implements ServicioEstablecimiento {
     @Override
     public Establecimiento buscarEstablecimiento(String direccion) {
         return repositorioEstablecimiento.findByDireccion(direccion);
+    }
+
+    @Override
+    public List<Establecimiento> buscarEstablecimiento() {
+        return repositorioEstablecimiento.findAll();
     }
     
 }

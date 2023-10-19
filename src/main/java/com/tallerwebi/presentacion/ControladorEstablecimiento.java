@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class ControladorEstablecimiento {
     
@@ -41,6 +43,18 @@ public class ControladorEstablecimiento {
         }
         
         return new ModelAndView("home");
+    }
+
+    @RequestMapping(value= "listaEstablecimientos", method = RequestMethod.GET)
+    public ModelAndView listaEstablecimientos(){
+        ModelAndView listaEstablecimientos = new ModelAndView("listaEstablecimientos");
+        listaEstablecimientos.addObject("listaEstablecimientos", servicio.buscarEstablecimiento());
+        return listaEstablecimientos;
+    }
+
+    @ModelAttribute("listaEstablecimientos")
+    public List<Establecimiento> estList(){
+        return servicio.buscarEstablecimiento();
     }
 
 }

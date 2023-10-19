@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+
 @Repository("repositorioEstacionamiento")
 public class RepositorioEstacionamientoImpl implements RepositorioEstacionamiento {
     private SessionFactory sessionFactory;
@@ -19,6 +21,7 @@ public class RepositorioEstacionamientoImpl implements RepositorioEstacionamient
     @Override
     public boolean registrarEstacionamiento(Estacionamiento e){
         final Session session = sessionFactory.getCurrentSession();
+        e.setFecha(LocalDate.now());
         if(e.getUsuario_id() != null && e.getEstablecimiento_id() != null){
             sessionFactory.getCurrentSession().save(e);
             return true;

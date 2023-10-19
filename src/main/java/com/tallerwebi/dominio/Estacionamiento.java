@@ -35,4 +35,5 @@ public class Estacionamiento {
     public void setUsuario_id(Usuario usuario_id) {this.usuario_id = usuario_id;}
     public void setEstablecimiento_id(Usuario establecimiento_id) {this.establecimiento_id = establecimiento_id;}
     public void setFecha(LocalDate fecha) {this.fecha = fecha;}
+
 }

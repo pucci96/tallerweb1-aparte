@@ -2,6 +2,8 @@ package com.tallerwebi.dominio;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface RepositorioEstablecimiento {
 
@@ -15,6 +17,8 @@ public interface RepositorioEstablecimiento {
     Establecimiento findById(Long id);
     Establecimiento findByDireccion(String direccion);
     Establecimiento save(Establecimiento establecimiento);
+
+    List<Establecimiento> findAll();
 
     void update(Establecimiento establecimiento);
 

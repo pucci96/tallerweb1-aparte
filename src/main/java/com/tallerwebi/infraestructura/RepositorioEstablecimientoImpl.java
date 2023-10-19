@@ -8,6 +8,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("repositorioEstablecimiento")
 public class RepositorioEstablecimientoImpl implements RepositorioEstablecimiento {
 
@@ -83,6 +85,15 @@ public class RepositorioEstablecimientoImpl implements RepositorioEstablecimient
     public Establecimiento save(Establecimiento establecimiento) {
         sessionFactory.getCurrentSession().save(establecimiento);
         return establecimiento;
+    }
+
+    @Override
+    public List<Establecimiento> findAll() {
+        final Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Establecimiento");
+        List<Establecimiento> lista;
+        lista = (List<Establecimiento>) query.getResultList();
+        return lista;
     }
 
     @Override
